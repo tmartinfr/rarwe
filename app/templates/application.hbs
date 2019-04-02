@@ -1,5 +1,13 @@
-<ul>
+<div class="rr-container">
+<div class="rr-page-header">
+<h1 class="rr-app-title">Rock & Roll<small class="rr-subtitle">
+with Ember.js</small></h1>
+</div>
+<div class="rr-main-content">
+<ul class="list pa0 ma0">
     {{#each model as |song|}}
         <li>{{song.title}} by {{song.band}} ({{song.rating}})</li>
     {{/each}}
 </ul>
+</div>
+</div>
