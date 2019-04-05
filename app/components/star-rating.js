@@ -12,4 +12,9 @@ export default Component.extend({
         }
         return stars;
     }),
+    actions: {
+        setRating(newRating) {
+            this.item.set('rating', newRating);
+        }
+    }
 });

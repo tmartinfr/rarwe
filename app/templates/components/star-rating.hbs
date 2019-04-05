@@ -2,7 +2,7 @@
   {{yield stars}}
 {{else}}
   {{#each stars as |star|}}
-    <label class="rating-star">
+    <label class="rating-star" onclick={{action "setRating" star.rating}}>
       {{#if star.isFull}}
         {{fa-icon "star"}}
       {{else}}
