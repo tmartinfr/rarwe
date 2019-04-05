@@ -1,0 +1,13 @@
+{{#if hasBlock}}
+  {{yield stars}}
+{{else}}
+  {{#each stars as |star|}}
+    <label class="rating-star">
+      {{#if star.isFull}}
+        {{fa-icon "star"}}
+      {{else}}
+        {{fa-icon "star-o"}}
+      {{/if}}
+    </label>
+  {{/each}}
+{{/if}}

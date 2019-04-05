@@ -1,7 +1,8 @@
 <ul class="rr-list">
   {{#each model.songs as |song|}}
     <li class="rr-list-item">
-      {{song.title}} <span class="rr-rating fr">{{song.rating}}</span>
+      {{song.title}}
+      <StarRating class="fr" @rating={{song.rating}}/>
     </li>
   {{else}}
     <li class="tc">
