@@ -9,5 +9,11 @@ export default Route.extend({
             'isAddingSong': false,
             'newSongName': '',
         });
+    },
+    actions: {
+        didTransition() {
+            let band = this.modelFor('bands.band');
+            document.title = `${band.name} songs - Rock & Roll`;
+        }
     }
 });

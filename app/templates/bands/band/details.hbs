@@ -1,4 +1,9 @@
 <section class="rr-panel b--solid br1 bw1">
+  <button type="button" class="rr-action-button fr" onclick={{action "toggleIsEditing"}}>{{if isEditing "Save" "Edit"}}</button>
   <h3>Description</h3>
-  <p class="lh-copy">{{model.description}}</p>
+  {{#if isEditing}}
+    {{textarea class="rr-textarea" value=model.description}}
+  {{else}}
+    <p class="lh-copy">{{model.description}}</p>
+  {{/if}}
 </section>
