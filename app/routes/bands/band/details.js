@@ -4,6 +4,11 @@ export default Route.extend({
     // model() {
     //     return this.modelFor('bands.band');
     // }
+    resetController(controller) {
+        controller.setProperties({
+            'isEditing': false,
+        });
+    },
     actions: {
         willTransition(transition) {
             if(this.controller.isEditing) {
@@ -12,6 +17,6 @@ export default Route.extend({
                     transition.abort()
                 }
             }
-        }
+        },
     },
 });

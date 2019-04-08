@@ -6,5 +6,5 @@ export default Controller.extend({
         toggleIsEditing() {
             this.toggleProperty('isEditing');
         }
-    }
+    },
 });
