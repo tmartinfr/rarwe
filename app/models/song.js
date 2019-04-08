@@ -1,8 +1,10 @@
 
-import EmberObject from '@ember/object';
+import DS from 'ember-data';
 
-export default EmberObject.extend({
-    title: '',
-    band: null,
-    rating: 0,
+const { Model, attr, belongsTo } = DS;
+
+export default Model.extend({
+    title: attr('string'),
+    band: belongsTo(),
+    rating: attr('number'),
 });
