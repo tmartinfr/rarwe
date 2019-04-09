@@ -19,8 +19,9 @@ export default Controller.extend({
             this.model.songs.pushObject(newSong);
             this.set('newSongName', '');
         },
-        updateRating(song, rating) {
+        async updateRating(song, rating) {
             song.set('rating', rating === song.rating ? 0 : rating);
+            await song.save()
         },
     },
 });
