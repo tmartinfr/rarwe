@@ -143,3 +143,8 @@ a {
     width: 100%;
     padding: .5rem;
 }
+#ember-testing-container {
+    font-family: 'avenir next', avenir, sans-serif;
+    color: var(--near-white);
+    background-color: var(--mid-grey) !important;
+}
