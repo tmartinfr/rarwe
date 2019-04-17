@@ -1,5 +1,7 @@
 import { module, test } from 'qunit';
-import { visit, click, fillIn } from '@ember/test-helpers';
+import { visit } from '@ember/test-helpers';
+import { pauseTest, resumeTest } from '@ember/test-helpers';
+import { createBand, createSong, goToSongForBand } from 'rarwe/tests/helpers/custom-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import setupMirageTest from 'ember-cli-mirage/test-support/setup-mirage';
 
@@ -18,10 +20,23 @@ module('Acceptance | Bands', function(hooks) {
   test('Create a band', async function(assert) {
     this.server.create('band', { name: 'Royal Blood' });
     await visit('/');
-    await click('[data-test-rr=new-band-label]');
-    await fillIn('[data-test-rr=new-band-input]', 'Caspian');
-    await click('[data-test-rr=new-band-button');
+    await createBand('Caspian');
     assert.dom('[data-test-rr=band-list-item]').exists({count: 2}, 'OK')
     assert.dom('[data-test-rr=songs-nav-item] > .active').hasText('Songs', 'Song tab active')
+  });
+
+});
+
+module('Acceptance | Songs', function(hooks) {
+  setupApplicationTest(hooks);
+  setupMirageTest(hooks);
+
+  test('Create a song', async function(assert) {
+    server.logging = true;
+    let band = this.server.create('band', { name: 'Royal Blood', description: "foo bar" });
+    await visit('/');
+    await goToSongForBand(band.id);
+    await createSong('Avant');
+    assert.dom('[data-test-rr=song-list-item]').exists({count: 1}, 'OK');
   });
 });
