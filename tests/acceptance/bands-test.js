@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
-import { visit } from '@ember/test-helpers';
-import { pauseTest, resumeTest } from '@ember/test-helpers';
+import { visit, currentURL } from '@ember/test-helpers';
+// import { pauseTest, resumeTest } from '@ember/test-helpers';
 import { createBand, createSong, goToSongForBand } from 'rarwe/tests/helpers/custom-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import setupMirageTest from 'ember-cli-mirage/test-support/setup-mirage';
@@ -33,10 +33,14 @@ module('Acceptance | Songs', function(hooks) {
 
   test('Create a song', async function(assert) {
     server.logging = true;
-    let band = this.server.create('band', { name: 'Royal Blood', description: "foo bar" });
+    let band = this.server.create('band', { name: 'Royal Blood' });
+    this.server.create('song', { title: 'Carioca', band, rating: 3 });
     await visit('/');
-    await goToSongForBand(band.id);
-    await createSong('Avant');
+    await goToSongForBand();
     assert.dom('[data-test-rr=song-list-item]').exists({count: 1}, 'OK');
+    await createSong('Avant');
+    await goToSongForBand();
+    assert.equal(currentURL(), '/bands/1/songs', 'URL ok');
+    assert.dom('[data-test-rr=song-list-item]').exists({count: 2}, 'OK');
   });
 });

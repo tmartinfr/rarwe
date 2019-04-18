@@ -12,7 +12,7 @@ export async function createSong(name) {
     return click('[data-test-rr=new-song-button]');
 }
 
-export async function goToSongForBand(band_id) {
+export async function goToSongForBand() {
     await click('[data-test-rr=band-link]');
     await click('[data-test-rr=songs-nav-item] > a');
 }
