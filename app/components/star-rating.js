@@ -5,6 +5,7 @@ export default Component.extend({
     classNames: ['rating-panel'],
     rating: 0,
     maxRating: 5,
+    isCool: false,
     item: null,
     onClick() {},
     stars: computed('rating', 'maxRating', function() {
